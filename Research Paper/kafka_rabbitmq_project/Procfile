@@ -1,0 +1,2 @@
+release: cd frontend && npm install && npm run build
+web: gunicorn dashboard_server:app

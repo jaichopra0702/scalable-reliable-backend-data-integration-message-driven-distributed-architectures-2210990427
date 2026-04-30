@@ -1,0 +1,40 @@
+.chart-section {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(59, 130, 246, 0.08));
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.6), transparent);
+}
+
+.chart-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent);
+  pointer-events: none;
+}
+
+.chart-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #f1f5f9;
+  letter-spacing: 0.4px;
+}
+
+.chart-section canvas {
+  max-height: 400px;
+}

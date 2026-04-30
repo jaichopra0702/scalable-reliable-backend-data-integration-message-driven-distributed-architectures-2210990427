@@ -1,0 +1,132 @@
+.controls-container {
+  margin-bottom: 3.5rem;
+}
+
+.controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 3rem;
+  padding: 2rem 2.5rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.controls::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at -20% 50%, rgba(59, 130, 246, 0.05), transparent 80%);
+  pointer-events: none;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: relative;
+  flex: 0 0 auto;
+  width: auto;
+  z-index: 1;
+}
+
+.control-group label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.control-group select,
+.control-group input[type="range"] {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #f1f5f9;
+  padding: 0.75rem 0.95rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.control-group select:hover,
+.control-group select:focus {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(40, 51, 69, 0.9);
+  outline: none;
+}
+
+.speed-control {
+  position: relative;
+  flex: 0 0 280px;
+}
+
+.speed-label-value {
+  position: absolute;
+  right: 0;
+  top: -2rem;
+  font-size: 0.75rem;
+  background: rgba(59, 130, 246, 0.3);
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  color: #60a5fa;
+  font-weight: 700;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.button-group {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-left: auto;
+  z-index: 1;
+}
+
+.button-group button {
+  padding: 0.75rem 1.6rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.08));
+  color: #60a5fa;
+  border: 1.5px solid rgba(59, 130, 246, 0.35);
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-group button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button-group button:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.button-group button:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.15));
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.button-group button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
