@@ -20,6 +20,7 @@ app = Flask(__name__, static_folder=str(frontend_dist), static_url_path='')
 clients = []
 clients_lock = threading.Lock()
 simulation_interval = 1.0
+simulator_started = False
 
 def broadcast(payload):
     """Send payload to all connected SSE clients."""
@@ -57,9 +58,21 @@ def simulate_metrics():
         idx += 1
         time.sleep(simulation_interval)
 
-# Start background simulator on app startup
-simulator_thread = threading.Thread(target=simulate_metrics, daemon=True)
-simulator_thread.start()
+def ensure_simulator_running():
+    """Start simulator thread if not already running."""
+    global simulator_started
+    if not simulator_started:
+        try:
+            simulator_thread = threading.Thread(target=simulate_metrics, daemon=True)
+            simulator_thread.start()
+            simulator_started = True
+        except Exception as e:
+            print(f"[ERROR] Simulator failed: {e}")
+
+# Ensure simulator starts on first request
+@app.before_request
+def startup():
+    ensure_simulator_running()
 
 @app.route('/')
 def home():
@@ -148,6 +161,7 @@ def publish_metric():
 @app.route('/metrics/stream')
 def stream_metrics():
     """SSE endpoint: stream metrics to a connected client."""
+    ensure_simulator_running()
     broker = request.args.get('broker', 'kafka')
     try:
         nodes = int(request.args.get('nodes', '5'))
